@@ -97,9 +97,26 @@ export default function ProjectsGallery() {
                 <div
                   className={`relative h-48 bg-gradient-to-br ${gradient} overflow-hidden`}
                 >
+                  {/* Project screenshot — hidden on error, gradient shows as fallback */}
+                  {project.image && (
+                    <motion.img
+                      src={project.image}
+                      alt={project.title}
+                      animate={{ scale: isHovered ? 1.05 : 1 }}
+                      transition={{ duration: 0.4 }}
+                      className="absolute inset-0 w-full h-full object-cover object-top"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  )}
+
+                  {/* Gradient overlay on top of image */}
+                  <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent`} />
+
                   {/* Animated grid overlay */}
                   <div
-                    className="absolute inset-0 opacity-20"
+                    className="absolute inset-0 opacity-10"
                     style={{
                       backgroundImage:
                         "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='0.5'/%3E%3C/svg%3E\")",
@@ -107,18 +124,20 @@ export default function ProjectsGallery() {
                     }}
                   />
 
-                  {/* Project title overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      animate={{ scale: isHovered ? 1.05 : 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="text-center"
-                    >
-                      <div className="font-heading text-4xl font-bold text-white/10 select-none">
-                        {project.title.split(" ")[0]}
-                      </div>
-                    </motion.div>
-                  </div>
+                  {/* Project title overlay — only shown when no image */}
+                  {!project.image && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <motion.div
+                        animate={{ scale: isHovered ? 1.05 : 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="text-center"
+                      >
+                        <div className="font-heading text-4xl font-bold text-white/10 select-none">
+                          {project.title.split(" ")[0]}
+                        </div>
+                      </motion.div>
+                    </div>
+                  )}
 
                   {/* Featured badge */}
                   {project.featured && (
