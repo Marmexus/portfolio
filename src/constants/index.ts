@@ -142,6 +142,18 @@ export const EXPERIENCE: Experience[] = [
 
 export const PROJECTS: Project[] = [
   {
+    title: "LuxeNest — Real Estate Platform",
+    description:
+      "A luxury real estate landing page with property search, 3D tour showcase, testimonials marquee, pricing tiers, and FAQ — built as a frontend demo.",
+    longDescription:
+      "Designed and built a full landing page for a luxury real estate platform. Features a hero search bar, featured property cards, animated testimonials marquee, pricing section, and FAQ accordion. Built with Next.js App Router, Tailwind CSS v4, Framer Motion, and shadcn/ui.",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "shadcn/ui"],
+    link: "https://github.com/Marmexus",
+    demo: "https://luxenest-real-estate.vercel.app/",
+    image: "/projects/luxenest-demo.png",
+    featured: true,
+  },
+  {
     title: "Enterprise ERP System",
     description:
       "Multi-tenant ERP system supporting inventory, POS, and e-commerce operations across multiple branches with secure per-company data isolation.",
@@ -163,7 +175,7 @@ export const PROJECTS: Project[] = [
     link: "https://github.com/Marmexus",
     demo: undefined,
     image: "/projects/travel-demo.png",
-    featured: true,
+    featured: false,
   },
 ];
 
